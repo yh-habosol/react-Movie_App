@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
 
 class App extends React.Component {
   state = {
@@ -14,14 +15,12 @@ class App extends React.Component {
     this.setState((current) => ({ count: current.count - 1 }));
   };
 
+  getMovies = async () => {
+    const moives = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+  };
+
   componentDidMount() {
-    console.log("Component rendered");
-  }
-  componentDidUpdate() {
-    console.log("I just updated");
-  }
-  componentWillUnmount() {
-    console.log("Goodbye, cruel world");
+    this.getMovies();
   }
 
   render() {
